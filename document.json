@@ -1,0 +1,39 @@
+{
+  "name": "Jaeger Operator",
+  "description": "Jaeger Operator",
+  "logo": "_images/SalesStack.png",
+  "has_supporting_content": true,
+  "stack_id": "jaeger-operator",
+  "type": "stack",
+  "categories": ["Logging and Tracing"],
+  "platform": "Kubernetes",
+  "cover": "cover.md",
+  "meta": {
+    "Monitoring": ["Jaeger"],
+    "Type":[
+         "Operators"
+      ],
+    "Install time": ["5 minutes"]
+  },
+"deployment_information": {
+  "Operator Project": "N/A",
+  "Deployment Namespace": "operators"
+},
+  "commands": [
+    {
+      "description": "Clone and Prepare ",
+      "exec": "cd /home/student/projects && git clone https://github.com/aradhana14nov/Community-Jaeger-Operator-tile.git && cd Community-Jaeger-Operator-tile"
+    },
+    {
+      "description": "Install Operator",
+      "exec": "kubectl create -f https://operatorhub.io/install/jaeger.yaml"
+    }
+  ],
+  "display": [
+    {
+      "name": "Developer Dashboard",
+      "url": "##DNS.host##/codeserver",
+      "enabled": true
+    }
+  ]
+}

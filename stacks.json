@@ -1,0 +1,23 @@
+{
+  "title": "Community Jaeger Operator",
+  "description": "Community Jaeger Operator",
+  "logo": "_images/SalesStack.png",
+  "enabled": true,
+  "category_label": [
+    "Operators"
+  ],
+  "document": "data-logging-stack",
+  "stack_id": "jaeger-operator",
+  "type": "stack",
+  "categories": [
+    "Logging and Tracing"
+  ],
+  "is_certified": true,
+  "has_support": true,
+  "has_dataset": false,
+  "has_api": false,
+  "git_url": "https://github.com/aradhana14nov/Community-Jaeger-Operator-tile.git",
+  "git_commit": "1082ba6bd2039a0c661723fb2c3f10360b72f032",
+  "installTime": "5 minutes",
+  "isStacksSaved": true
+}
