@@ -3,9 +3,9 @@
 ![Logo](_images/logo_jaeger.png)
 
 
-Jaeger, inspired by Dapper and OpenZipkin, is a distributed tracing system released as open source by Uber Technologies. It is used for monitoring and troubleshooting microservices-based distributed systems.
+### Overview:
 
-### Core capabilities:
+Jaeger, inspired by Dapper and OpenZipkin, is a distributed tracing system released as open source by Uber Technologies. It is used for monitoring and troubleshooting microservices-based distributed systems.
 
 Jaeger is used for monitoring and troubleshooting microservices-based distributed systems, including:
 
@@ -17,7 +17,7 @@ Jaeger is used for monitoring and troubleshooting microservices-based distribute
 - OpenTracing compatible data model
 - Multiple storage backends: Badger, Cassandra, Elasticsearch, Memory.
 
-### Operator features:
+### Operator's features are as follows:
 
 - Multiple modes - Supports allInOne, production and streaming modes of deployment.
 
