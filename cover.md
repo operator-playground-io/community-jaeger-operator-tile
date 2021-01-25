@@ -40,6 +40,7 @@ Jaeger can be deployed either as all-in-one binary, where all Jaeger backend com
 2. Collectors are writing to Kafka as a preliminary buffer.
 
 The following diagram illustrates the overall architecture:
+
 Illustration of direct-to-storage architecture:
 
 ![](_images/architecture-v1.png)
@@ -74,7 +75,7 @@ In this tutorial,we are going to cover following topics:
 
 1. Install Jaeger Operator and verify its successful installation.
 2. Create Jaeger Instance and verify status of pods and all other resources.
-3. How to autotrace microservices using Jaeger
-4. How to check distributed tracing of services using Jaeger UI
-5. Cleanup Operator
+3. How to autotrace microservices using Jaeger.
+4. How to check distributed tracing of services using Jaeger UI.
+5. Cleanup Operator.
 
