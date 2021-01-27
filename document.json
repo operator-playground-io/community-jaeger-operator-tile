@@ -1,9 +1,9 @@
 {
-  "name": "Jaeger Operator",
-  "description": "Jaeger Operator",
+  "name": "Community Jaeger Operator",
+  "description": "Community Jaeger Operator",
   "logo": "_images/SalesStack.png",
   "has_supporting_content": true,
-  "stack_id": "jaeger-operator",
+  "stack_id": "community-jaeger-operator",
   "type": "stack",
   "categories": ["Logging and Tracing"],
   "platform": "Kubernetes",
