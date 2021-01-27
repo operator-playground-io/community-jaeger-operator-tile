@@ -7,7 +7,7 @@ description: This tutorial explains how to create an instance of Jaeger Operator
 
 Jaeger Operator Instance can be created using the Custom Resource Definition YAML files.
 
-**step 1:** Create a custom resource YAML file
+**Step 1:** Create a custom resource YAML file
 
 ```execute
 cat <<'EOF' >jaegerInstance.yaml 
@@ -18,7 +18,7 @@ metadata:
 EOF
 ```
 
-**Step 2:** create Jaeger Operator instance in the namespace "operators"
+**Step 2:** Create Jaeger Operator instance in the namespace "operators"
 
 ```execute
 kubectl create -f jaegerInstance.yaml 
