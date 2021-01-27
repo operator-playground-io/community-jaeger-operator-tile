@@ -122,6 +122,8 @@ replicaset.apps/jaeger-788f55ddc9   1         1         1       36s
 kubectl get all
  ```
  
+Please wait till Pod "STATUS" will be "Running" and then proceed further.
+
 A similar to this output will be shown:
  
 ``` 
@@ -188,7 +190,9 @@ spec:
   ```execute
   kubectl get all
   ```
-  
+ Please wait till Pod "STATUS" will be "Running" and then proceed further. 
+ 
+ 
  Output similar to this will be shown:
   
 ``` 
