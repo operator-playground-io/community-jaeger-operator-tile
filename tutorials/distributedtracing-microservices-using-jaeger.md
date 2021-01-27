@@ -231,11 +231,12 @@ replicaset.apps/service-c-78bb44b7d5                       1         1         1
  kubectl get svc|grep service-a|tr -s ' ' | cut -d ' ' -f 5|cut -d ':' -f 2|cut -d "/" -f 1
 ```
 
-So Replace the "Port" value we retrive using above command to access worldclock api using below url:
+Access worldclock api using below url:
 
 ```
 http://##DNS.ip##:Port
 ```
+Note: We can find the Port value using Step 7.
 
 ![](_images/services-ui.PNG)
  
