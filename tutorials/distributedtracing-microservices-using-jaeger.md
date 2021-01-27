@@ -162,7 +162,7 @@ kubectl label namespace default autotrace=enabled
    Each of the services is, by default, a completely trace unaware Spring Boot application.
    Each of these services is tagged with the **autotrace: enabled** label so that our webhook knows to inject instrumentation into the application at deploy time.
    
-example:
+Example:
 ```
 spec:
   replicas: 1
