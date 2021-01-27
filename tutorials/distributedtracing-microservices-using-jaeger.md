@@ -235,20 +235,14 @@ replicaset.apps/service-c-78bb44b7d5                       1         1         1
  kubectl get svc|grep service-a|tr -s ' ' | cut -d ' ' -f 5|cut -d ':' -f 2|cut -d "/" -f 1
 ```
 
-Access worldclock api using below url:
-
-```
-http://##DNS.ip##:Port
-```
-Note: We can find the Port value using Step 7.
-
-![](_images/services-ui.PNG)
  
 Using above Port value, make the below curl command:
  
  ```copycommand
  curl -s http://##DNS.ip##:Port/api/json/gmt/now|jq
  ```
+ 
+ Note: It will take some time to get response from the worldclock api.You can retry curl command after some interval of time.
  
  You will see similar to this output:
  
@@ -268,9 +262,19 @@ Using above Port value, make the below curl command:
 
 Above output shows request is made for service-a.Services: A calls B, B calls C and C calls upstream to the world clock API.
 
+
+Access worldclock api using below url:
+
+```
+http://##DNS.ip##:Port
+```
+Note: We retrieve the "Port" value using Step 7.
+
+![](_images/services-ui.PNG)
+
 Now its time to Trace these services using Jaeger UI.
 
-Please refer tuturial "Jaeger-UI" to check how we can trace these services on Jaeger UI.
+Please refer tutorial "Jaeger-UI" to check how we can trace these services on Jaeger UI.
   
 
  
