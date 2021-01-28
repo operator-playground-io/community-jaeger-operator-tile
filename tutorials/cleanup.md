@@ -18,7 +18,6 @@ Example:
 
 Note: Here jaegerInstance.yaml  is the CR of the Jaeger Operator Instance.
 
-Similarly,delete all the custom resource.
  
 
 ***Delete the operator by kubectl delete command:***
