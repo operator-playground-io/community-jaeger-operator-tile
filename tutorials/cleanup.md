@@ -29,13 +29,13 @@ Note: Here jaegerInstance.yaml is the custom resource of the Jaeger Operator Ins
  kubectl delete -f https://operatorhub.io/install/jaeger.yaml
  ```
  
-***Delete the Services "Service-a","Service-b" and "service-c" using below command:
+***Delete the Services "Service-a","Service-b" and "service-c" using below command:***
 
 ```copycommand
 kubectl delete -f /home/student/projects/community-jaeger-operator-yaml/services.yaml
 ``` 
 
-***Delete the "webhook" using below command:
+***Delete the "webhook" using below command:***
 
 ```copycommand
 kubectl delete -f /home/student/projects/community-jaeger-operator-yaml/webhook.yaml
