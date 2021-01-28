@@ -99,12 +99,12 @@ replicaset.apps/jaeger-788f55ddc9   1         1         1       36s
 
 2. Deploy the "webhook".
 
-  webhook.yaml file is present inside : /home/student/projects/community-jaeger-operator-tile
+  webhook.yaml file is present inside : /home/student/projects/community-jaeger-operator-yaml
   
   Deploy the webhook application using below command:
   
   ```execute
-  kubectl create -f /home/student/projects/community-jaeger-operator-tile/webhook.yaml
+  kubectl create -f /home/student/projects/community-jaeger-operator-yaml/webhook.yaml
   ```
   
   You will see below output:
@@ -158,7 +158,7 @@ kubectl label namespace default autotrace=enabled
  
 5. We’ll need to demonstrate a request across multiple services to show end-to-end the tracing working well.
  
-   We have "services.yaml" file to deploy at: /home/student/projects/community-jaeger-operator-tile
+   We have "services.yaml" file to deploy at: /home/student/projects/community-jaeger-operator-yaml
     
    "services.yaml" creates a chain of services A, B and C. A calls B, B calls C and C calls upstream to the world clock API. 
    Each of the services is, by default, a completely trace unaware Spring Boot application.
@@ -182,7 +182,7 @@ spec:
  Deploy the services.yaml using below command:
     
   ```execute
-  kubectl create -f /home/student/projects/community-jaeger-operator-tile/services.yaml
+  kubectl create -f /home/student/projects/community-jaeger-operator-yaml/services.yaml
   ```
   
 6. Check that all the created resources are in "Running" state using below command:
