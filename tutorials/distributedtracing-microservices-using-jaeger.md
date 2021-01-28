@@ -229,17 +229,40 @@ replicaset.apps/service-b-66944b7dcc                       1         1         1
 replicaset.apps/service-c-78bb44b7d5                       1         1         1       19s
 ```
 
-7. Get the "Port" of service/service-a using below command:
+7. Update "service/service-a" of type NodePort.
+
+Execute below command to update "service/service-a" of type NodePort:
 
 ```execute
- kubectl get svc|grep service-a|tr -s ' ' | cut -d ' ' -f 5|cut -d ':' -f 2|cut -d "/" -f 1
+kubectl get service/service-a --output yaml > /tmp/jaeger.yaml
+sed -i "s/type: .*/type: NodePort/g" /tmp/jaeger.yaml
+kubectl patch service/service-a -p "$(cat /tmp/jaeger.yaml)"
 ```
 
- 
-Using above Port value, make the below curl command:
+Output:
+```
+service/jaeger-query patched
+```
+
+Execute below command to update NodePort to 32732:
+
+
+```execute
+kubectl get service/service-a --output yaml > /tmp/jaeger.yaml
+sed -i "s/nodePort: .*/nodePort: 32732/g" /tmp/jaeger.yaml
+kubectl patch svc jaeger-query -p "$(cat /tmp/jaeger.yaml)"
+```
+
+Output:
+
+```
+service/jaeger-query patched
+```
+
+Make the below curl command:
  
  ```copycommand
- curl -s http://##DNS.ip##:Port/api/json/gmt/now|jq
+ curl -s http://##DNS.ip##:32732/api/json/gmt/now|jq
  ```
  
  Note: It will take some time to get response from the worldclock api.If you do not see any output, please wait for some time and retry the curl command.
@@ -263,12 +286,8 @@ Using above Port value, make the below curl command:
 Above output shows request is made for service-a.Services: A calls B, B calls C and C calls upstream to the world clock API.
 
 
-Access worldclock api using below url:
+Click on the http://##DNS.ip##:32732 to access worldclock api 
 
-```
-http://##DNS.ip##:Port
-```
-Note: We retrieved the "Port" value using Step 7.
 
 ![](_images/services-ui.PNG)
 
