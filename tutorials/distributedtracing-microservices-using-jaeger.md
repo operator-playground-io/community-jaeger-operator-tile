@@ -242,7 +242,7 @@ Using above Port value, make the below curl command:
  curl -s http://##DNS.ip##:Port/api/json/gmt/now|jq
  ```
  
- Note: It will take some time to get response from the worldclock api.You can retry curl command after some interval of time.
+ Note: It will take some time to get response from the worldclock api.If you do not see any output, please wait for some time and retry the curl command.
  
  You will see similar to this output:
  
@@ -268,7 +268,7 @@ Access worldclock api using below url:
 ```
 http://##DNS.ip##:Port
 ```
-Note: We retrieve the "Port" value using Step 7.
+Note: We retrieved the "Port" value using Step 7.
 
 ![](_images/services-ui.PNG)
 
