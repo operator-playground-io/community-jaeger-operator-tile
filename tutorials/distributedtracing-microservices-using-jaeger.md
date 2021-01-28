@@ -69,7 +69,7 @@ The source code of "webhook" will:
 - Tweak the JAVA_TOOL_OPTIONS environment variable to add the javaagent line for the agent.
 
 
-### Deploy the Application in Kubernetes Cluster:
+### Deploy the Application in Kubernetes Cluster
 
 1. First make sure you have Jaeger running in your default namespace using below command:
 
@@ -235,7 +235,7 @@ replicaset.apps/service-c-78bb44b7d5                       1         1         1
 ```execute
 kubectl get service/service-a --output yaml > /tmp/jaeger.yaml
 sed -i "s/nodePort: .*/nodePort: 32732/g" /tmp/jaeger.yaml
-kubectl patch svc service/service-a -p "$(cat /tmp/jaeger.yaml)"
+kubectl patch service/service-a -p "$(cat /tmp/jaeger.yaml)"
 ```
 
 Output:
@@ -271,7 +271,7 @@ Make the below curl command:
 Above output shows request is made for service-a.Services: A calls B, B calls C and C calls upstream to the world clock API.
 
 
-Click on the http://##DNS.ip##:32732 to access worldclock api 
+Click on the http://##DNS.ip##:32732 to access worldclock api. 
 
 
 ![](_images/services-ui.PNG)
