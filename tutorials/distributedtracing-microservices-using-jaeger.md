@@ -149,7 +149,7 @@ replicaset.apps/jaeger-788f55ddc9                          1         1         1
 
 ```
   
-4. Lastly make sure you label the target namespace so that the webhook gets activated for any deployment within using below command:
+4. Make sure you label the target namespace so that the webhook gets activated for any deployment within using below command:
 
 ```execute  
 kubectl label namespace default autotrace=enabled
