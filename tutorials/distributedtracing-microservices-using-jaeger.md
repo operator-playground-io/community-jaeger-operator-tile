@@ -229,28 +229,13 @@ replicaset.apps/service-b-66944b7dcc                       1         1         1
 replicaset.apps/service-c-78bb44b7d5                       1         1         1       19s
 ```
 
-7. Update "service/service-a" of type NodePort.
-
-Execute below command to update "service/service-a" of type NodePort:
-
-```execute
-kubectl get service/service-a --output yaml > /tmp/jaeger.yaml
-sed -i "s/type: .*/type: NodePort/g" /tmp/jaeger.yaml
-kubectl patch service/service-a -p "$(cat /tmp/jaeger.yaml)"
-```
-
-Output:
-```
-service/jaeger-query patched
-```
-
-Execute below command to update NodePort to 32732:
+7. Execute below command to update NodePort to 32732:
 
 
 ```execute
 kubectl get service/service-a --output yaml > /tmp/jaeger.yaml
 sed -i "s/nodePort: .*/nodePort: 32732/g" /tmp/jaeger.yaml
-kubectl patch svc jaeger-query -p "$(cat /tmp/jaeger.yaml)"
+kubectl patch svc service/service-a -p "$(cat /tmp/jaeger.yaml)"
 ```
 
 Output:
