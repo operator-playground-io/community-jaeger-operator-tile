@@ -7,7 +7,7 @@
     "Operators"
   ],
   "document": "data-logging-stack",
-  "stack_id": "jaeger-operator",
+  "stack_id": "community-jaeger-operator",
   "type": "stack",
   "categories": [
     "Logging and Tracing"
