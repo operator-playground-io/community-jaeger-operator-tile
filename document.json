@@ -16,13 +16,13 @@
     "Install time": ["5 minutes"]
   },
 "deployment_information": {
-  "Operator Project": "/home/student/projects/Community-Jaeger-Operator-Yaml",
+  "Operator Project": "/home/student/projects/community-jaeger-operator-yaml",
   "Deployment Namespace": "operators"
 },
   "commands": [
     {
       "description": "Clone and Prepare ",
-      "exec": "cd /home/student/projects && git clone https://github.com/operator-playground-io/Community-Jaeger-Operator-Yaml.git && cd Community-Jaeger-Operator-Yaml"
+      "exec": "cd /home/student/projects && git clone https://github.com/operator-playground-io/community-jaeger-operator-yaml.git && cd community-jaeger-operator-yaml"
     },
     {
       "description": "Install Operator",
