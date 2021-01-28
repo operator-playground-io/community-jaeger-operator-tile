@@ -1,1 +1,1 @@
-# Jaeger-Operator
+# Community-Jaeger-Operator
