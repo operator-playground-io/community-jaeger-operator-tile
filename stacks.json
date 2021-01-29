@@ -17,7 +17,7 @@
   "has_dataset": false,
   "has_api": false,
   "git_url": "https://github.com/operator-playground-io/community-jaeger-operator-tile.git",
-  "git_commit": "15cdefb6e1f028f1afa903f7f0c79ff1890b77e3",
+  "git_commit": "b05df3f305bb37d9144bf46c2b269df3df4dc749",
   "installTime": "5 minutes",
   "isStacksSaved": true
 }
