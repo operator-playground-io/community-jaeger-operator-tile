@@ -39,8 +39,8 @@ kubectl get pods
 You will see similar to this output:
 
 ```
-NAME                          READY   STATUS    RESTARTS   AGE
-pod/jaeger-788f55ddc9-ztglr   1/1     Running   0          5s
+NAME                      READY   STATUS    RESTARTS   AGE
+jaeger-788f55ddc9-4m278   1/1     Running   0          8s
 ```
 
 Check all the kubernetes resources:
@@ -54,20 +54,20 @@ You will see similar to this output:
 
 ```
 NAME                          READY   STATUS    RESTARTS   AGE
-pod/jaeger-788f55ddc9-ztglr   1/1     Running   0          5s
+pod/jaeger-788f55ddc9-4m278   1/1     Running   0          3m38s
 
-NAME                                TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)                                  AGE
-service/jaeger-agent                ClusterIP   None            <none>        5775/UDP,5778/TCP,6831/UDP,6832/UDP      5s
-service/jaeger-collector            ClusterIP   10.100.20.172   <none>        9411/TCP,14250/TCP,14267/TCP,14268/TCP   5s
-service/jaeger-collector-headless   ClusterIP   None            <none>        9411/TCP,14250/TCP,14267/TCP,14268/TCP   5s
-service/jaeger-query                ClusterIP   10.105.144.48   <none>        16686/TCP                                5s
-service/kubernetes                  ClusterIP   10.96.0.1       <none>        443/TCP                                  17h
+NAME                                TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)                                  AGE
+service/jaeger-agent                ClusterIP   None             <none>        5775/UDP,5778/TCP,6831/UDP,6832/UDP      3m38s
+service/jaeger-collector            ClusterIP   10.110.111.12    <none>        9411/TCP,14250/TCP,14267/TCP,14268/TCP   3m38s
+service/jaeger-collector-headless   ClusterIP   None             <none>        9411/TCP,14250/TCP,14267/TCP,14268/TCP   3m38s
+service/jaeger-query                ClusterIP   10.109.168.225   <none>        16686/TCP                                3m38s
+service/kubernetes                  ClusterIP   10.96.0.1        <none>        443/TCP                                  11h
 
 NAME                     READY   UP-TO-DATE   AVAILABLE   AGE
-deployment.apps/jaeger   1/1     1            1           5s
+deployment.apps/jaeger   1/1     1            1           3m38s
 
 NAME                                DESIRED   CURRENT   READY   AGE
-replicaset.apps/jaeger-788f55ddc9   1         1         1       5s
+replicaset.apps/jaeger-788f55ddc9   1         1         1       3m38s
 ```
 
 
