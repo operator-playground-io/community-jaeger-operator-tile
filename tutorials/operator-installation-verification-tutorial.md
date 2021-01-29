@@ -29,7 +29,7 @@ kubectl get pods -n operators
 You should see a pod starting with 'jaeger-operator' with Ready value '1/1' and Status 'Running' like the output as below.
 
 ```output
-NAME                                         READY   STATUS    RESTARTS   AGE
-jaeger-operator-76bdc75548-n8r6n             1/1     Running   0          11m
+NAME                               READY   STATUS    RESTARTS   AGE
+jaeger-operator-76bdc75548-zsqt4   1/1     Running   0          60s
 ```
 
