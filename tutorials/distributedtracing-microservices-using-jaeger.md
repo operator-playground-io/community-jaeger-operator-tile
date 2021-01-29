@@ -81,20 +81,20 @@ Output will be similar to below output:
 
 ```
 NAME                          READY   STATUS    RESTARTS   AGE
-pod/jaeger-788f55ddc9-ztglr   1/1     Running   0          36s
+pod/jaeger-788f55ddc9-4m278   1/1     Running   0          5m32s
 
-NAME                                TYPE           CLUSTER-IP      EXTERNAL-IP   PORT(S)                                  AGE
-service/jaeger-agent                ClusterIP      None            <none>        5775/UDP,5778/TCP,6831/UDP,6832/UDP      36s
-service/jaeger-collector            ClusterIP      10.100.20.172   <none>        9411/TCP,14250/TCP,14267/TCP,14268/TCP   36s
-service/jaeger-collector-headless   ClusterIP      None            <none>        9411/TCP,14250/TCP,14267/TCP,14268/TCP   36s
-service/jaeger-query                LoadBalancer   10.105.144.48   <pending>     16686:31831/TCP                          36s
-service/kubernetes                  ClusterIP      10.96.0.1       <none>        443/TCP                                  17h
+NAME                                TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)                                  AGE
+service/jaeger-agent                ClusterIP   None             <none>        5775/UDP,5778/TCP,6831/UDP,6832/UDP      5m32s
+service/jaeger-collector            ClusterIP   10.110.111.12    <none>        9411/TCP,14250/TCP,14267/TCP,14268/TCP   5m32s
+service/jaeger-collector-headless   ClusterIP   None             <none>        9411/TCP,14250/TCP,14267/TCP,14268/TCP   5m32s
+service/jaeger-query                NodePort    10.109.168.225   <none>        16686:32379/TCP                          5m32s
+service/kubernetes                  ClusterIP   10.96.0.1        <none>        443/TCP                                  11h
 
 NAME                     READY   UP-TO-DATE   AVAILABLE   AGE
-deployment.apps/jaeger   1/1     1            1           36s
+deployment.apps/jaeger   1/1     1            1           5m32s
 
 NAME                                DESIRED   CURRENT   READY   AGE
-replicaset.apps/jaeger-788f55ddc9   1         1         1       36s
+replicaset.apps/jaeger-788f55ddc9   1         1         1       5m32s
 ```
 
 2. Deploy the "webhook".
@@ -122,30 +122,30 @@ replicaset.apps/jaeger-788f55ddc9   1         1         1       36s
 kubectl get all
  ```
  
-Please wait till Pod "STATUS" will be "Running" and then proceed further.
+Please wait till Pod "STATUS" is "Running" and then proceed further.
 
 A similar to this output will be shown:
  
 ``` 
 NAME                                                 READY   STATUS    RESTARTS   AGE
-pod/auto-tracing-mutating-webhook-67bd68dd77-ks7km   1/1     Running   0          94s
-pod/jaeger-788f55ddc9-2cj4n                          1/1     Running   0          4m19s
+pod/auto-tracing-mutating-webhook-67bd68dd77-76zwd   1/1     Running   0          34s
+pod/jaeger-788f55ddc9-4m278                          1/1     Running   0          7m27s
 
-NAME                                    TYPE           CLUSTER-IP      EXTERNAL-IP   PORT(S)                                  AGE
-service/auto-tracing-mutating-webhook   LoadBalancer   10.100.35.237   <pending>     443:32687/TCP                            94s
-service/jaeger-agent                    ClusterIP      None            <none>        5775/UDP,5778/TCP,6831/UDP,6832/UDP      4m19s
-service/jaeger-collector                ClusterIP      10.111.142.2    <none>        9411/TCP,14250/TCP,14267/TCP,14268/TCP   4m19s
-service/jaeger-collector-headless       ClusterIP      None            <none>        9411/TCP,14250/TCP,14267/TCP,14268/TCP   4m19s
-service/jaeger-query                    LoadBalancer   10.109.253.83   <pending>     16686:30709/TCP                          4m19s
-service/kubernetes                      ClusterIP      10.96.0.1       <none>        443/TCP                                  130m
+NAME                                    TYPE           CLUSTER-IP       EXTERNAL-IP   PORT(S)                                  AGE
+service/auto-tracing-mutating-webhook   LoadBalancer   10.99.128.250    <pending>     443:32745/TCP                            34s
+service/jaeger-agent                    ClusterIP      None             <none>        5775/UDP,5778/TCP,6831/UDP,6832/UDP      7m27s
+service/jaeger-collector                ClusterIP      10.110.111.12    <none>        9411/TCP,14250/TCP,14267/TCP,14268/TCP   7m27s
+service/jaeger-collector-headless       ClusterIP      None             <none>        9411/TCP,14250/TCP,14267/TCP,14268/TCP   7m27s
+service/jaeger-query                    NodePort       10.109.168.225   <none>        16686:32379/TCP                          7m27s
+service/kubernetes                      ClusterIP      10.96.0.1        <none>        443/TCP                                  11h
 
 NAME                                            READY   UP-TO-DATE   AVAILABLE   AGE
-deployment.apps/auto-tracing-mutating-webhook   1/1     1            1           94s
-deployment.apps/jaeger                          1/1     1            1           4m19s
+deployment.apps/auto-tracing-mutating-webhook   1/1     1            1           34s
+deployment.apps/jaeger                          1/1     1            1           7m27s
 
 NAME                                                       DESIRED   CURRENT   READY   AGE
-replicaset.apps/auto-tracing-mutating-webhook-67bd68dd77   1         1         1       94s
-replicaset.apps/jaeger-788f55ddc9                          1         1         1       4m19s
+replicaset.apps/auto-tracing-mutating-webhook-67bd68dd77   1         1         1       34s
+replicaset.apps/jaeger-788f55ddc9                          1         1         1       7m27s
 
 ```
   
@@ -154,7 +154,12 @@ replicaset.apps/jaeger-788f55ddc9                          1         1         1
 ```execute  
 kubectl label namespace default autotrace=enabled
 ```
- 
+
+Output:
+
+```
+namespace/default labeled
+```
  
 5. We’ll need to demonstrate a request across multiple services to show end-to-end the tracing working well.
  
@@ -185,6 +190,17 @@ spec:
   kubectl create -f /home/student/projects/community-jaeger-operator-yaml/services.yaml
   ```
   
+Output:
+
+```
+service/service-a created
+service/service-b created
+service/service-c created
+deployment.apps/service-a created
+deployment.apps/service-b created
+deployment.apps/service-c created
+```
+  
 6. Check that all the created resources are in "Running" state using below command:
   
   ```execute
@@ -197,36 +213,36 @@ spec:
   
 ``` 
 NAME                                                 READY   STATUS    RESTARTS   AGE
-pod/auto-tracing-mutating-webhook-67bd68dd77-ks7km   1/1     Running   0          3m26s
-pod/jaeger-788f55ddc9-2cj4n                          1/1     Running   0          6m11s
-pod/service-a-56dc4665b7-5jv59                       1/1     Running   0          19s
-pod/service-b-66944b7dcc-lgplg                       1/1     Running   0          19s
-pod/service-c-78bb44b7d5-2wlvk                       1/1     Running   0          19s
+pod/auto-tracing-mutating-webhook-67bd68dd77-76zwd   1/1     Running   0          6m56s
+pod/jaeger-788f55ddc9-4m278                          1/1     Running   0          13m
+pod/service-a-56dc4665b7-d2csg                       1/1     Running   0          73s
+pod/service-b-66944b7dcc-brtwx                       1/1     Running   0          73s
+pod/service-c-78bb44b7d5-j4s6v                       1/1     Running   0          73s
 
-NAME                                    TYPE           CLUSTER-IP      EXTERNAL-IP   PORT(S)                                  AGE
-service/auto-tracing-mutating-webhook   LoadBalancer   10.100.35.237   <pending>     443:32687/TCP                            3m26s
-service/jaeger-agent                    ClusterIP      None            <none>        5775/UDP,5778/TCP,6831/UDP,6832/UDP      6m11s
-service/jaeger-collector                ClusterIP      10.111.142.2    <none>        9411/TCP,14250/TCP,14267/TCP,14268/TCP   6m11s
-service/jaeger-collector-headless       ClusterIP      None            <none>        9411/TCP,14250/TCP,14267/TCP,14268/TCP   6m11s
-service/jaeger-query                    LoadBalancer   10.109.253.83   <pending>     16686:30709/TCP                          6m11s
-service/kubernetes                      ClusterIP      10.96.0.1       <none>        443/TCP                                  132m
-service/service-a                       ClusterIP      10.100.208.58   <none>        8080/TCP                                 19s
-service/service-b                       ClusterIP      10.104.194.67   <none>        8080/TCP                                 19s
-service/service-c                       ClusterIP      10.101.33.170   <none>        8080/TCP                                 19s
+NAME                                    TYPE           CLUSTER-IP       EXTERNAL-IP   PORT(S)                                  AGE
+service/auto-tracing-mutating-webhook   LoadBalancer   10.99.128.250    <pending>     443:32745/TCP                            6m56s
+service/jaeger-agent                    ClusterIP      None             <none>        5775/UDP,5778/TCP,6831/UDP,6832/UDP      13m
+service/jaeger-collector                ClusterIP      10.110.111.12    <none>        9411/TCP,14250/TCP,14267/TCP,14268/TCP   13m
+service/jaeger-collector-headless       ClusterIP      None             <none>        9411/TCP,14250/TCP,14267/TCP,14268/TCP   13m
+service/jaeger-query                    NodePort       10.109.168.225   <none>        16686:32379/TCP                          13m
+service/kubernetes                      ClusterIP      10.96.0.1        <none>        443/TCP                                  11h
+service/service-a                       NodePort       10.111.83.19     <none>        8080:30865/TCP                           73s
+service/service-b                       ClusterIP      10.99.198.55     <none>        8080/TCP                                 73s
+service/service-c                       ClusterIP      10.110.123.229   <none>        8080/TCP                                 73s
 
 NAME                                            READY   UP-TO-DATE   AVAILABLE   AGE
-deployment.apps/auto-tracing-mutating-webhook   1/1     1            1           3m26s
-deployment.apps/jaeger                          1/1     1            1           6m11s
-deployment.apps/service-a                       1/1     1            1           19s
-deployment.apps/service-b                       1/1     1            1           19s
-deployment.apps/service-c                       1/1     1            1           19s
+deployment.apps/auto-tracing-mutating-webhook   1/1     1            1           6m56s
+deployment.apps/jaeger                          1/1     1            1           13m
+deployment.apps/service-a                       1/1     1            1           73s
+deployment.apps/service-b                       1/1     1            1           73s
+deployment.apps/service-c                       1/1     1            1           73s
 
 NAME                                                       DESIRED   CURRENT   READY   AGE
-replicaset.apps/auto-tracing-mutating-webhook-67bd68dd77   1         1         1       3m26s
-replicaset.apps/jaeger-788f55ddc9                          1         1         1       6m11s
-replicaset.apps/service-a-56dc4665b7                       1         1         1       19s
-replicaset.apps/service-b-66944b7dcc                       1         1         1       19s
-replicaset.apps/service-c-78bb44b7d5                       1         1         1       19s
+replicaset.apps/auto-tracing-mutating-webhook-67bd68dd77   1         1         1       6m56s
+replicaset.apps/jaeger-788f55ddc9                          1         1         1       13m
+replicaset.apps/service-a-56dc4665b7                       1         1         1       73s
+replicaset.apps/service-b-66944b7dcc                       1         1         1       73s
+replicaset.apps/service-c-78bb44b7d5                       1         1         1       73s
 ```
 
 7. Execute below command to update NodePort to 32732:
@@ -246,7 +262,7 @@ service/jaeger-query patched
 
 Make the below curl command:
  
- ```copycommand
+ ```execute
  curl -s http://##DNS.ip##:32732/api/json/gmt/now|jq
  ```
  
