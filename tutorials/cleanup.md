@@ -13,7 +13,7 @@ description: This tutorial explains how to cleanup Operator
 Example:
  
  ```copycommand
- kubectl delete -f jaegerInstance.yaml 
+ kubectl delete -f /home/student/jaegerInstance.yaml 
  ```
 
 Note: Here jaegerInstance.yaml is the custom resource of the Jaeger Operator Instance.
@@ -46,7 +46,7 @@ kubectl delete -f /home/student/projects/community-jaeger-operator-yaml/webhook.
  Example:
  
   ```copycommand
-  rm -rf jaegerInstance.yaml
+  rm -rf /home/student/jaegerInstance.yaml
   ```
   
   Similarly, you can delete rest of yaml files.
