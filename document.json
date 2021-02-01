@@ -1,7 +1,7 @@
 {
   "name": "Community Jaeger Operator",
   "description": "Community Jaeger Operator",
-  "logo": "_images/SalesStack.png",
+  "logo": "_images/jaeger-logo.png",
   "has_supporting_content": true,
   "stack_id": "community-jaeger-operator",
   "type": "stack",
