@@ -12,19 +12,19 @@ description: This tutorial explains how to cleanup Operator
 
 Example:
  
- ```copycommand
+ ```execute
  kubectl delete -f /home/student/jaegerInstance.yaml 
  ```
 
 ***Delete the Services "Service-a","Service-b" and "service-c" using below command:***
 
-```copycommand
+```execute
 kubectl delete -f /home/student/projects/community-jaeger-operator-yaml/services.yaml
 ``` 
 
 ***Delete the "webhook" using below command:***
 
-```copycommand
+```execute
 kubectl delete -f /home/student/projects/community-jaeger-operator-yaml/webhook.yaml
 ```
 
@@ -36,7 +36,7 @@ kubectl delete -f /home/student/projects/community-jaeger-operator-yaml/webhook.
  
  Example:
  
- ```copycommand
+ ```execute
  kubectl delete -f https://operatorhub.io/install/jaeger.yaml
  ```
  
@@ -68,7 +68,7 @@ Note: The csv value may be different from above value.In the above delete csv co
  
  Example:
  
- ```copycommand
+ ```execute
  rm -rf /home/student/jaegerInstance.yaml
  ```
   
