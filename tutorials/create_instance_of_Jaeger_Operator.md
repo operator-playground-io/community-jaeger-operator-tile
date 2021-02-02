@@ -73,9 +73,9 @@ replicaset.apps/jaeger-788f55ddc9   1         1         1       3m38s
 
 ### Access Jaeger's dashboard
 
-To access Jaeger externally, lets first update service to use NodePort:
+To access Jaeger externally, lets first update service: "jaeger-query" of TYPE NodePort:
 
-**Execute below command to use NodePort:**
+**Execute below command to update service:"jaeger-query" of TYPE NodePort:**
 
 ```execute
 kubectl get service/jaeger-query --output yaml > /tmp/jaeger.yaml
@@ -89,7 +89,7 @@ Output:
 service/jaeger-query patched
 ```
 
-**Execute below command to update NodePort to 32379:**
+**Execute below command to set NodePort to 32379:**
 
 ```execute
 kubectl get service/jaeger-query --output yaml > /tmp/jaeger.yaml
@@ -104,6 +104,7 @@ service/jaeger-query patched
 ```
 
 Click on the <a href="http://##DNS.ip##:32379" target="_blank">http://##DNS.ip##:32379</a> to access Jaeger Dashboard.
+
 You will see the Jaeger UI as below :
 
 
