@@ -16,19 +16,6 @@ Example:
  kubectl delete -f /home/student/jaegerInstance.yaml 
  ```
 
-Note: Here jaegerInstance.yaml is the custom resource of the Jaeger Operator Instance.
-
- 
-
-***Delete the operator by kubectl delete command:***
- 
- 
- Example:
- 
- ```copycommand
- kubectl delete -f https://operatorhub.io/install/jaeger.yaml
- ```
- 
 ***Delete the Services "Service-a","Service-b" and "service-c" using below command:***
 
 ```copycommand
@@ -41,12 +28,27 @@ kubectl delete -f /home/student/projects/community-jaeger-operator-yaml/services
 kubectl delete -f /home/student/projects/community-jaeger-operator-yaml/webhook.yaml
 ```
 
+
+ 
+
+***Delete the operator by kubectl delete command:***
+ 
+ 
+ Example:
+ 
+ ```copycommand
+ kubectl delete -f https://operatorhub.io/install/jaeger.yaml
+ ```
+ 
+
 ***Delete all the yaml files:***
  
  Example:
  
   ```copycommand
   rm -rf /home/student/jaegerInstance.yaml
+  rm -rf /home/student/projects/community-jaeger-operator-yaml/webhook.yaml
+  rm -rf /home/student/projects/community-jaeger-operator-yaml/services.yaml
   ```
   
   Similarly, you can delete rest of yaml files.
