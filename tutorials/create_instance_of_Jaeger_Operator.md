@@ -89,11 +89,11 @@ Output:
 service/jaeger-query patched
 ```
 
-**Execute below command to set NodePort to 32379:**
+**Execute below command to set NodePort to 32385:**
 
 ```execute
 kubectl get service/jaeger-query --output yaml > /tmp/jaeger.yaml
-sed -i "s/nodePort: .*/nodePort: 32379/g" /tmp/jaeger.yaml
+sed -i "s/nodePort: .*/nodePort: 32385/g" /tmp/jaeger.yaml
 kubectl patch svc jaeger-query -p "$(cat /tmp/jaeger.yaml)"
 ```
 
@@ -103,7 +103,7 @@ Output:
 service/jaeger-query patched
 ```
 
-Click on the <a href="http://##DNS.ip##:32379" target="_blank">http://##DNS.ip##:32379</a> to access Jaeger Dashboard.
+Click on the <a href="http://##DNS.ip##:32385" target="_blank">http://##DNS.ip##:32385</a> to access Jaeger Dashboard.
 
 You will see the Jaeger UI as below :
 
