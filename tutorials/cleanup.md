@@ -1,6 +1,6 @@
 ---
-title: Jaeger Operator cleanup Tutorial
-description: This tutorial explains how to cleanup Operator
+title: Jaeger Operator cleanup 
+description: Learn how to cleanup the Jaeger Operator
 ---
 
 
@@ -8,43 +8,36 @@ description: This tutorial explains how to cleanup Operator
 
 
 
-***Delete the operator's custom resource by kubectl delete commands :***
+**Step 1: Delete the operator's Custom Resources by using `kubectl delete` commands as below.**
 
-Example:
- 
+
  ```execute
  kubectl delete -f /home/student/jaegerInstance.yaml 
  ```
 
-***Delete the Services "Service-a","Service-b" and "service-c" using below command:***
+**Step 2: Delete the Operator Services "Service-a","Service-b" and "Service-c" using the `kubectl delete` command as below.**
 
 ```execute
 kubectl delete -f /home/student/projects/community-jaeger-operator-yaml/services.yaml
 ``` 
 
-***Delete the "webhook" using below command:***
+**Step 3: Delete the "webhook" service using the `kubectl delete` command as below.**
 
 ```execute
 kubectl delete -f /home/student/projects/community-jaeger-operator-yaml/webhook.yaml
 ```
 
-
+**Step 4: Delete the operator by using `kubectl delete` command as below.**
  
-
-***Delete the operator by kubectl delete command:***
- 
- 
- Example:
- 
+  
  ```execute
  kubectl delete -f https://operatorhub.io/install/jaeger.yaml
  ```
  
- ***Deleting the CSV resource ***
+**Step 5: Deleting the CSV resource.**
 
-- Find the CSV in the namespace "operators"
+   **Step 5.1: Find the Prometheus CSV in the namespace "Operators".**
 
-Example:
 
 ```execute
 kubectl get csv -n operators
@@ -56,17 +49,16 @@ NAME                      DISPLAY                     VERSION   REPLACES        
 jaeger-operator.v1.20.0   Community Jaeger Operator   1.20.0    jaeger-operator.v1.19.0   Succeeded
 ```
 
-Delete above CSV value using kubectl delete csv command:
+  **Step 5.2: Delete the CSV.**
 
 ```execute
 kubectl delete csv/jaeger-operator.v1.20.0 -n operators
 ```
-Note: The csv value may be different from above value.In the above delete csv command,Use the csv retrived by kubectl get csv command.  
+Note: The csv value may be different from above value. In the above `delete csv` command, use the csv retrieved from `kubectl get csv` command.
 
 
-***Delete all the yaml files:***
+**Step 6: Delete all the yaml files.**
  
- Example:
  
  ```execute
  rm -rf /home/student/jaegerInstance.yaml
