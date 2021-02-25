@@ -1,13 +1,13 @@
 ---
-title: Jaeger Operator Tutorial to create an instance of Jaeger Operator
-description: This tutorial explains how to create an instance of Jaeger Operator
+title: Jaeger Operator Instance Creation
+description: Learn how to create instances of your Jaeger Operator
 ---
 
-### Create Instance of Jaeger Operator
+### Create Jaeger Operator Instance 
 
 Jaeger Operator Instance can be created using the Custom Resource Definition YAML files.
 
-**Step 1:** Create a custom resource YAML file
+**Step 1: First, create the yaml definition of the Custom Resource as below.**
 
 ```execute
 cat <<'EOF' >jaegerInstance.yaml 
@@ -18,39 +18,41 @@ metadata:
 EOF
 ```
 
-**Step 2:** Create Jaeger Operator instance in the namespace "operators"
+**Step 2: Execute the command below to create Jaeger Operator instance in the namespace "operators"**
 
 ```execute
 kubectl create -f jaegerInstance.yaml 
 ```
 
-You will see the following output:
+You will see a similar output as below:
 
 ```
 jaeger.jaegertracing.io/jaeger created
 ```
 
-Check the Pods status:
+**Wait till Pod STATUS is "Running", then proceed.**
+
+
+**Step 3: Check the pod status.**
 
 ```execute
 kubectl get pods
 ```
 
-You will see similar to this output:
+You will see a similar output as below:
 
 ```
 NAME                      READY   STATUS    RESTARTS   AGE
 jaeger-788f55ddc9-4m278   1/1     Running   0          8s
 ```
 
-Check all the kubernetes resources:
+**Step 4: Check all the Kubernetes resources using the command below.**
 
 ```execute
 kubectl get all
 ```
 
-
-You will see similar to this output:
+You will see a similar output as below:
 
 ```
 NAME                          READY   STATUS    RESTARTS   AGE
@@ -73,9 +75,9 @@ replicaset.apps/jaeger-788f55ddc9   1         1         1       3m38s
 
 ### Access Jaeger's dashboard
 
-To access Jaeger externally, lets first update service: "jaeger-query" of TYPE NodePort:
+To access Jaeger services externally, first update the service: "jaeger-query" of TYPE `NodePort`.
 
-**Execute below command to update service:"jaeger-query" of TYPE NodePort:**
+**Step 1: Execute the command below to update the service:"jaeger-query" of TYPE NodePort.**
 
 ```execute
 kubectl get service/jaeger-query --output yaml > /tmp/jaeger.yaml
@@ -83,13 +85,13 @@ sed -i "s/type: .*/type: NodePort/g" /tmp/jaeger.yaml
 kubectl patch service/jaeger-query -p "$(cat /tmp/jaeger.yaml)"
 ```
 
-Output:
+This should produce the following output.
 
 ```output
 service/jaeger-query patched
 ```
 
-**Execute below command to set NodePort to 32385:**
+**Step 2: Execute the following command to set NodePort service to 32385.**
 
 ```execute
 kubectl get service/jaeger-query --output yaml > /tmp/jaeger.yaml
@@ -97,19 +99,24 @@ sed -i "s/nodePort: .*/nodePort: 32385/g" /tmp/jaeger.yaml
 kubectl patch svc jaeger-query -p "$(cat /tmp/jaeger.yaml)"
 ```
 
-Output:
+This should produce the following output.
 
-```output
+```
 service/jaeger-query patched
 ```
 
-Click on the <a href="http://##DNS.ip##:32385" target="_blank">http://##DNS.ip##:32385</a> to access Jaeger Dashboard.
+**Step 3: Click on the link below to access Jaeger Dashboard.**
 
-You will see the Jaeger UI as below :
+http://##DNS.ip##:32385
+
+
+The Jaeger Dashboard UI looks like this.
 
 
  ![](_images/jaeger-ui.PNG)
 
 
+### Conclusion
 
+Now we are able to access Jaeger Dashboard and will be able to see the details on UI.
 
