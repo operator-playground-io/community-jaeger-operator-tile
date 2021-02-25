@@ -27,13 +27,14 @@ kubectl delete -f /home/student/projects/community-jaeger-operator-yaml/services
 kubectl delete -f /home/student/projects/community-jaeger-operator-yaml/webhook.yaml
 ```
 
+
 **Step 4: Delete the operator by using `kubectl delete` command as below.**
  
   
  ```execute
  kubectl delete -f https://operatorhub.io/install/jaeger.yaml
  ```
-
+ 
 **Step 5: Deleting the CSV resource.**
 
    **Step 5.1: Find the Prometheus CSV in the namespace "Operators".**
@@ -64,4 +65,6 @@ Note: The csv value may be different from above value. In the above `delete csv`
  rm -rf /home/student/jaegerInstance.yaml
  ```
   
-  
+### Conclusion
+
+**You have successfully deleted the Jaeger Operator resources!**
