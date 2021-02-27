@@ -1,13 +1,13 @@
 ---
-title: Enabling Distributed Tracing for Microservices With Jaeger
-description: This tutorial explains how to autotrace microservices using Jaeger
+title: Distributed Tracing for Microservices using Jaeger
+description: Learn how to autotrace microservices using Jaeger
 ---
 
-### What is Distributed Tracing
+### What is Distributed Tracing?
 
 Distributed Tracing is a technique to follow a single transaction, which often requires multiple component interactions downstream capturing timing and other metadata throughout the transaction, then reassemble information to provide a complete picture of the application’s behavior at runtime.
 
-### Why Distributed Tracing Is Required
+### Why do we need Distributed Tracing ? 
 Distributed tracing enables developers to perform:
 
 - Distributed transaction monitoring.
@@ -18,9 +18,8 @@ Distributed tracing enables developers to perform:
 - Distributed context propagation.
 
 
-### Key Terms in Distributed Tracing
+### Basic Terminology in Distributed Tracing
 
-Below are few terminology used while doing auto-tracing of micro-services.
 
 **Span:** A span represents a logical unit of work in Jaeger that has an operation name, the start time of the operation and the duration. Spans may be nested and ordered to model causal relationships. 
 The recommended solution is to annotate spans with tags or logs.
@@ -34,12 +33,17 @@ The recommended solution is to annotate spans with tags or logs.
 
 ![](_images/span-context.png)
 
+
 **Trace:** A trace is a data/execution path through the system and can be thought of as a directed acyclic graph (DAG) of spans. 
 
-Below is a diagrammatic view of DAG. Each trace has a unique identifier (ex: a trace id) for the trace, as span context that is propagated over the network to the next request.
+Below is a diagrammatic view of DAG. 
 
 
 ![](_images/distributedtracingpic3.png)
+
+
+In above figure, each trace has a unique identifier (e.g. a trace id) for the trace, as span context that is propagated over the network to the next request.
+
 
 **Baggage:** Key-value pairs are added to the span context and propagated throughout the trace.
 An external process can inject baggage by setting the special HTTP Header jaeger-baggage on a request.
@@ -52,32 +56,32 @@ There are three popular open source tools that can be used for distributed traci
 - Jaeger
 - AppDash
 
-We will use here Jaeger for distributed tracing in microservices.
+We will use here Jaeger as a tool for distributed tracing in microservices.
 
-### Enabling Tracing for an Application
+### Enable Tracing for an Application
 
-We will take a simple example to understand how Jaeger can be used to trace microservices.
-There’s some small amount of development required to get tracing hooked up in the first place.
-For opentracing in this particular example of java src code,Java special agent is used. 
-By plugging this into our app via the -javaagent JVM flag we can fully enable tracing across any commonly used 3rd party libraries without changing any code or rebuilding the project.
-What we’ll do here is automatically plug-in this agent at deployment time using a combination of webhook, init container and tweaking of environment variables to insert the agent.
+Let’s take an example to understand how Jaeger facilitates tracing of microservices. A small development effort is required to hook up tracing in first place.
+In this example of OpenTracing, Java special agent is used. 
+Plugging this into the application via -javaagent JVM flag, enables tracing across any common 3rd party libraries without changing any code or rebuilding the project.
+Here, we auto-plugin the agent at the time of deployment using a combination of webhook, and init container, and will tweak the environment variables to insert the agent.
 
-The source code of "webhook" will:
-- Check the incoming deployment descriptor for the correct tags (autotrace: enabled). If present it’ll apply steps 2 onward, otherwise it’ll leave everything untouched.
-- Add a volume mount into which the opentracing special agent jar will be dropped.
-- Add an init container to copy the jar into the shared mount before the application boots.
-- Tweak the JAVA_TOOL_OPTIONS environment variable to add the javaagent line for the agent.
+
+The functionality of webhook source code will be: 
+- To check the incoming deployment descriptor for the correct tags (autotrace: enabled). If present, it’ll apply Step 2 onward, otherwise it’ll leave everything untouched.
+- To add a volume mount into which the opentracing special agent jar will be dropped.
+- To add an init container to copy the jar into the shared mount before the application boots.
+- To perform tweaking of the JAVA_TOOL_OPTIONS environment variable to add the javaagent line for the agent.
 
 
 ### Deploy the Application in Kubernetes Cluster
 
-1. First make sure you have Jaeger running in your default namespace using below command:
+**Step 1: Verify that Jaeger is running in the `default` namespace by running the command below.** 
 
 ```execute
 kubectl get all 
 ```
 
-Output will be similar to below output:
+This should produce the below output.
 
 ```
 NAME                          READY   STATUS    RESTARTS   AGE
@@ -97,17 +101,17 @@ NAME                                DESIRED   CURRENT   READY   AGE
 replicaset.apps/jaeger-788f55ddc9   1         1         1       5m32s
 ```
 
-2. Deploy the "webhook".
+**Step 2: Deploy the "webhook".**
 
-  webhook.yaml file is present inside : /home/student/projects/community-jaeger-operator-yaml
+  The `webhook.yaml` file is present inside : /home/student/projects/community-jaeger-operator-yaml
   
-  Deploy the webhook application using below command:
+  - Deploy the webhook application using command below.
   
   ```execute
   kubectl create -f /home/student/projects/community-jaeger-operator-yaml/webhook.yaml
   ```
   
-  You will see below output:
+  You will see the output as below:
   
  ```
  service/auto-tracing-mutating-webhook created
@@ -116,15 +120,17 @@ replicaset.apps/jaeger-788f55ddc9   1         1         1       5m32s
  ```
 
 
-3. Check the status of all the resources created are in "Running" state:
+**Step 3: Check the status of all the resources created and are in "Running" state.**
+
+Use the following command to check the status.
 
 ```execute
 kubectl get all
  ```
  
-Please wait till Pod "STATUS" is "Running" and then proceed further.
+The status of all the created resources should be ‘Running’. Please wait for the STATUS to be ‘Running’. 
 
-A similar to this output will be shown:
+You will see the output as below:
  
 ``` 
 NAME                                                 READY   STATUS    RESTARTS   AGE
@@ -149,27 +155,32 @@ replicaset.apps/jaeger-788f55ddc9                          1         1         1
 
 ```
   
-4. Make sure you label the target namespace so that the webhook gets activated for any deployment within using below command:
+**Step 4: Label the target namespace to activate webhook for target deployment.**
+ 
+Execute the command given below.
 
 ```execute  
 kubectl label namespace default autotrace=enabled
 ```
 
-Output:
+This should produce the below output.
 
 ```
 namespace/default labeled
 ```
  
-5. We’ll need to demonstrate a request across multiple services to show end-to-end the tracing working well.
- 
-   We have "services.yaml" file to deploy at: /home/student/projects/community-jaeger-operator-yaml
+**Step 5: Now we demonstrate a request across multiple services to show how tracing works end-to-end.**
+  
+We have `services.yaml` file to deploy at: /home/student/projects/community-jaeger-operator-yaml
     
-   "services.yaml" creates a chain of services A, B and C. A calls B, B calls C and C calls upstream to the world clock API. 
-   Each of the services is, by default, a completely trace unaware Spring Boot application.
-   Each of these services is tagged with the **autotrace: enabled** label so that our webhook knows to inject instrumentation into the application at deploy time.
+`services.yaml` creates a chain of services A, B and C. A calls B, B calls C and C calls upstream to the world clock API. 
+
+Each of the services is, by default, a completely trace unaware Spring Boot application.
+
+Each of these services is tagged with the **autotrace: enabled** label so that your webhook knows to inject  instrumentation into the application at deploy time.
    
-Example:
+See the example below. 
+
 ```
 spec:
   replicas: 1
@@ -184,13 +195,13 @@ spec:
         autotrace: enabled
  ```
     
- Deploy the services.yaml using below command:
+- Deploy the services.yaml using below command.
     
   ```execute
   kubectl create -f /home/student/projects/community-jaeger-operator-yaml/services.yaml
   ```
   
-Output:
+The resulting output displays as follows.
 
 ```
 service/service-a created
@@ -201,15 +212,14 @@ deployment.apps/service-b created
 deployment.apps/service-c created
 ```
   
-6. Check that all the created resources are in "Running" state using below command:
+**Step 6: Make sure that all the created resources are in "Running" state using below command.
   
   ```execute
   kubectl get all
   ```
- Please wait till Pod "STATUS" will be "Running" and then proceed further. 
+ Note: Please wait for the pod "STATUS" to be "Running", then proceed further. 
  
- 
- Output similar to this will be shown:
+ Output looks like the below
   
 ``` 
 NAME                                                 READY   STATUS    RESTARTS   AGE
@@ -245,7 +255,7 @@ replicaset.apps/service-b-66944b7dcc                       1         1         1
 replicaset.apps/service-c-78bb44b7d5                       1         1         1       73s
 ```
 
-7. Execute below command to update NodePort to 32732:
+**Step 7: Execute the command below to update NodePort to 32732.**
 
 
 ```execute
@@ -260,15 +270,15 @@ Output:
 service/jaeger-query patched
 ```
 
-Make the below curl command:
+**Step 8: Make the following curl command.**
  
  ```execute
  curl -s http://##DNS.ip##:32732/api/json/gmt/now|jq
  ```
  
- Note: It will take some time to get response from the worldclock api.If you do not see any output, please wait for some time and retry the curl command.
+Note: It will take some time to get response from the worldclock api.If you do not see any output, please wait for some time and retry the curl command.
  
- You will see similar to this output:
+ The output should look as shown below.
  
  ```
  {
@@ -284,17 +294,20 @@ Make the below curl command:
 }
 ```
 
-Above output shows request is made for service-a.Services: A calls B, B calls C and C calls upstream to the world clock API.
+The above output shows that the request is made for service-a.
+Services: A calls B, B calls C, and C calls upstream to the world clock API.
 
 
-Click on the http://##DNS.ip##:32732 to access worldclock api. 
 
+**Step 9: Click on the link below to access worldclock api.**
+
+http://##DNS.ip##:32732
 
 ![](_images/services-ui.PNG)
 
-Now its time to Trace these services using Jaeger UI.
+Step 10: Now Trace these services using Jaeger UI.
 
-Please refer tutorial "Jaeger-UI" to check how we can trace these services on Jaeger UI.
+Note: Please refer tutorial "Jaeger-UI" to know how we can trace these services on Jaeger UI.
   
 
  
