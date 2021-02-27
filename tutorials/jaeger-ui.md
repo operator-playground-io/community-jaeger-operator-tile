@@ -1,23 +1,29 @@
 ---
-title: Jaeger Operator Tutorial to check distributed tracing using Jaeger UI
-description: This tutorial explains how to check distributed tracing of services using Jaeger UI
+title: Jaeger Operator for distributed tracing using Jaeger UI
+description: Learn how to check the distributed tracing of services using Jaeger UI
 ---
 
-### Jaeger UI
+### Jaeger UI to check the distributed tracing of services
 
 Once our microservices are successfully configured for auto-tracing we can check the traces on Jaeger UI.
 
-Follow below steps to check traces on Jaeger UI:
+Follow the steps below to check the traces using Jaeger UI.
 
-1. On the "Service" dropdown, you will see all services which are deployed on cluster and enabled for autotrace as shown in below snapshot: 
+On the UI, you will see a "Service" dropdown, listing all the services which are deployed on cluster and enabled for autotrace. See the snapshot below. 
+
 
 ![](_images/service-autotracing-jaeger-ui.png)
 
-2. Select "service-a" from drop down. You can select the operations you want to trace using "Operation" drop-down and other drop-down options provided by the UI and click on "Find Traces" button.
+
+Step 1: Select "service-a" from the drop down list.
+
+Step 2: Select the operations you want to trace using "Operation" drop-down and other drop-down options provided within the UI.
 
 ![](_images/operations.png)
 
-3. You can see number of traces produced with the unique trace id as shown in below snapshot.
+Step 3: Click on "Find Traces" button.
+
+A number of traces with unique trace id will show up on the UI. See the figure below. 
 
  ![](_images/see-detailed-trace-of-all-the-services.png)
 
