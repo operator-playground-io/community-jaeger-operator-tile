@@ -309,9 +309,9 @@ Step 10: Now Trace these services using Jaeger UI.
 
 Note: Please refer tutorial "Jaeger-UI" to know how we can trace these services on Jaeger UI.
   
-
  
-
+### Conclusion
+Now we enabled our application service for autotracing using Jaeger. Its ready to be traced by Jaeger UI.
 
 
 
