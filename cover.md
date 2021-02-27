@@ -17,12 +17,13 @@ Jaeger, inspired by Dapper and OpenZipkin, is a distributed tracing system relea
 
 ### Features of Jaeger Operator
 
-- Multiple modes - Supports allInOne, production and streaming modes of deployment.
+- Multiple modes - It Supports allInOne, production and streaming modes of deployment.
 
 - Configuration - The Operator manages configuration information when installing Jaeger instances.
 
 - Storage - It configures the storage used by Jaeger. Memory is the default storage. Other options include Badger, Cassandra or Elasticsearch. In OpenShift environment, the operator can delegate creation of an Elasticsearch cluster to the Elasticsearch Operator if deployed.
-- Agent - It can be deployed as sidecar (default) and/or daemonset.
+
+- Agent - It can be deployed as sidecar (default) and/or as a daemonset.
 
 - UI - It optionally installs Ingress (Kubernetes) or secure route (OpenShift) to provide access to the Jaeger UI.
 
@@ -48,7 +49,9 @@ B. Architecture for Kafka as intermediate buffer
 
 ![](_images/architecture-v2.png)
 
-**Jaeger client libraries:**A Jaeger client is basically a part of your application, and is responsible for creating the tracers. It creates the trace spans in the application code which get picked up by the Jaeger agent over UDP and are forwarded to the Jaeger collector using a secured gRPC connection.
+**Major Components:**
+
+**Jaeger client libraries:**A Jaeger client libraries, is basically a part of your application, and is responsible for creating the tracers. It creates the trace spans in the application code which get picked up by the Jaeger agent over UDP and are forwarded to the Jaeger collector using a secured gRPC connection.
 
 **Agent:**A Jaeger agent is a network daemon that listens to spans sent over UDP. It batches the spans and sends them to the collector. It is designed to be deployed to all hosts as an infrastructure component. The Jaeger agent abstracts the routing and discovery of the collectors away from the client.
 
