@@ -1,6 +1,6 @@
 ---
 title: Jaeger Operator Installation Verification
-description:Learn how to verify that the Jaeger Operator installed properly in the namespace
+description: Learn how to verify that the Jaeger Operator installed properly in the namespace
 ---
 
 ### Check the Jaeger Operator
