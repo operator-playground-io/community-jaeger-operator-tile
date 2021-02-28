@@ -5,35 +5,35 @@
    "footer":"footer.md",
    "tutorials":[
       {
-         "description":" Check Jaeger Operator Installation status",
+         "description":" Learn how to verify that the Community Jaeger Operator installed properly in the namespace",
          "duration":"5 min",
          "tutorial_name":"operator-installation-verification-tutorial.md",
-         "title":"1: Community Jaeger Operator Installation Verification"
+         "title":"1. Community Jaeger Operator Installation Verification"
       },
       {
-         "description":"Learn how to create Community Jaeger Operator Instance",
+         "description":"Learn how to create instances of Community Jaeger Operator.",
          "duration":"15 min",
          "tutorial_name":"create_instance_of_Jaeger_Operator.md",
-         "title":"2: Create Instance of Community Jaeger Operator"
+         "title":"2. Community Jaeger Operator Instance creation"
       },
       
       {
          "description":"Learn how to autotrace microservices using Jaeger",
          "duration":"30 min",
          "tutorial_name":"distributedtracing-microservices-using-jaeger.md",
-         "title":"3: Enabling Distributed Tracing for Microservices With Jaeger"
+         "title":"3. Distributed Tracing for Microservices using Jaeger"
       },
       {
-         "description":"Learn how to check distributed tracing of services using Jaeger UI",
+         "description":"Learn how to check the distributed tracing of services using Jaeger UI.",
          "duration":"15 min",
          "tutorial_name":"jaeger-ui.md",
-         "title":"4: Jaeger UI to see auto-tracing of services"
+         "title":"4. Distributed tracing using Jaeger UI"
       },
       {
-         "description":"Steps to cleanup Operator",
+         "description":"Learn how to cleanup the Community Jaeger Operator.",
          "duration":"5 min",
          "tutorial_name":"cleanup.md",
-         "title":"5: Cleanup Operator"
+         "title":"5. Cleanup the Community Jaeger Operator"
       }
       
    ],
