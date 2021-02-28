@@ -1,11 +1,11 @@
 ---
-title: Jaeger Operator for distributed tracing using Jaeger UI
+title: Distributed tracing using Jaeger UI
 description: Learn how to check the distributed tracing of services using Jaeger UI
 ---
 
 ### Jaeger UI to check the distributed tracing of services
 
-Once our microservices are successfully configured for auto-tracing we can check the traces on Jaeger UI.
+Once our microservices are successfully configured for auto-tracing, we can check the traces on Jaeger UI.
 
 Follow the steps below to check the traces using Jaeger UI.
 
@@ -27,30 +27,32 @@ A number of traces with unique trace id will show up on the UI. See the figure b
 
  ![](_images/see-detailed-trace-of-all-the-services.png)
 
-4. Click on the trace id and you will see all the three services traces as shown in below snapshot:
-
+Step 4: Click on the trace id and you will see all the three services traces as shown in snapshot below:
 ![](_images/services-tracing.PNG)
 
-5. Also to get more details, you can expand the traces view by clicking on small down arrow option "v" against each services. You will see something similar to below snapshot:
+For more information, you can expand the traces’ view by clicking on small down arrow (v) visible against each service.It should look like: 
 
 ![](_images/services-expanded-form.png)
 
-You can also see the logs and warning details against each services operations: "Pass" and "Get" which will provide important information while tracing your services.
+Here, you can also see the logs and warning details against each service operation, indicated as "Pass" and "Get" which will provides important alerts while tracing your services.
 
 ![](_images/logging-warning-msg.png)
 
 
-6. You can compare two traces by selecting the check box corresponding to each trace id and click on "Compare" option as shown in below snapshot:
+Step 5: To compare any two traces, select the checkbox corresponding to each trace id and click on "Compare". 
 
 
 ![](_images/compare-services-traces.png)
 
-You will see the flow how these services : service-a,service-b and service-c requests flows using "Compare" option.
+You can also view the flow of service requests.
 
 ![](_images/compare-services.PNG)
 
-7. You can view Architecture DAG view using the option "System Architecture" "DAG" option. See below snapshot:
+Step 6: Click on ‘System Architecture’ to view the DAG view of architecture.
 
 ![](_images/system-architecture.PNG)
 
 
+### Conclusion
+
+This way we can check the distributed tracing of services using Jaeger UI
