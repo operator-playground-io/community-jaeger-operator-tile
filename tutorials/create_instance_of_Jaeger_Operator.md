@@ -90,6 +90,7 @@ This should produce the following output.
 ```output
 service/jaeger-query patched
 ```
+It will take few seconds to update the service.
 
 **Step 2: Execute the following command to set NodePort service to 32385.**
 
